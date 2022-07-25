@@ -22,7 +22,7 @@ class HouseSearchingTest extends TestCase
      */
     public function test_house()
     {
-        $response = $this->get('api/house');
+        $response = $this->post('api/house');
         $response->assertStatus(200);
     }
 
@@ -31,7 +31,7 @@ class HouseSearchingTest extends TestCase
         $this->seed(HouseSeeder::class);
 
         // TODO:: need to add MockHttp
-        $response = $this->get('api/house?name=The Victoria&price=374662:374662&bedrooms=4&bathrooms=2&storeys=2&garages=2');
+        $response = $this->post('api/house?name=The Victoria&price=374662:374662&bedrooms=4&bathrooms=2&storeys=2&garages=2');
         $response->assertExactJson([[
             'name' => 'The Victoria',
             'price' => 374662,
