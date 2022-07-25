@@ -6,8 +6,8 @@ use Illuminate\Http\Request;
 
 class HouseSearchingRequestDTO {
 
-    public string $name = '';
-    public string  $price = '';
+    public ?string $name = '';
+    public ?string  $price = '';
     public ?int $bedrooms = null;
     public ?int $bathrooms = null;
     public ?int $storeys = null;
