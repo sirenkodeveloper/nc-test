@@ -20,13 +20,13 @@ class HouseSearchingTest extends TestCase
      *
      * @return void
      */
-    public function test_house()
+    public function test_house_url()
     {
         $response = $this->post('api/house');
         $response->assertStatus(200);
     }
 
-    public function test_house1()
+    public function test_house_full_search()
     {
         $this->seed(HouseSeeder::class);
 
