@@ -2,12 +2,19 @@
 
 namespace Tests\Feature;
 
+use Database\Seeders\HouseSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
 class HouseSearchingTest extends TestCase
 {
+    use RefreshDatabase;
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+    }
+
     /**
      * A basic feature test example.
      *
@@ -21,8 +28,17 @@ class HouseSearchingTest extends TestCase
 
     public function test_house1()
     {
+        $this->seed(HouseSeeder::class);
+
         // TODO:: need to add MockHttp
-        $response = $this->get('api/house?name=The Victoria');
-        $response->assertSimilarJson(["name" => "The Victoria"]);
+        $response = $this->get('api/house?name=The Victoria&price=374662:374662&bedrooms=4&bathrooms=2&storeys=2&garages=2');
+        $response->assertExactJson([[
+            'name' => 'The Victoria',
+            'price' => 374662,
+            'bedrooms' => 4,
+            'bathrooms' => 2,
+            'storeys' => 2,
+            'garages' => 2
+        ]]);
     }
 }
